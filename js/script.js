@@ -1,32 +1,32 @@
 /*----- constants -----*/ '';
-const LETTERS = [
-	'A',
-	'B',
-	'C',
-	'D',
-	'E',
-	'F',
-	'G',
-	'H',
-	'I',
-	'J',
-	'K',
-	'L',
-	'M',
-	'N',
-	'O',
-	'P',
-	'Q',
-	'R',
-	'S',
-	'T',
-	'U',
-	'V',
-	'W',
-	'X',
-	'Y',
-	'Z',
-];
+// const LETTERS = [
+// 	'A',
+// 	'B',
+// 	'C',
+// 	'D',
+// 	'E',
+// 	'F',
+// 	'G',
+// 	'H',
+// 	'I',
+// 	'J',
+// 	'K',
+// 	'L',
+// 	'M',
+// 	'N',
+// 	'O',
+// 	'P',
+// 	'Q',
+// 	'R',
+// 	'S',
+// 	'T',
+// 	'U',
+// 	'V',
+// 	'W',
+// 	'X',
+// 	'Y',
+// 	'Z',
+// ];
 
 const WRONG_GUESS_COUNT = 5;
 
@@ -55,9 +55,51 @@ const HIDDEN_WORDS_DEF = [
 	'Similar to human languages, programming languages have their own set of rules on how statements can be conveyed. The set of these rules is known as syntax.',
 ];
 
-const
+//img need to add 
+const CODE_MAN = ['https://i.imgur.com/DEvJWy4.png'];
 
 /*----- app's state (variables) -----*/
+let hiddenWord;
+
+let correctLet = [];
+
+let wrongLet = [];
+
+let correctGuess;
+
+let wrongGuess;
+
 /*----- cached element references -----*/
+
+const resetButton = document.querySelector('#reset');
+
+const codeManImg = document.querySelector('.codeman-img');
+
+const inputBox = document.querySelector('.input-box').value;
+
 /*----- event listeners -----*/
+
+resetButton.addEventListener('click', resetButton)
+
 /*----- functions -----*/
+
+
+function guessInput() {
+    inputBox.addEventListener('click', handleClick)
+}
+
+function init() {
+    codeManImg.src = CODE_MAN[0]
+    hiddenWord = theHiddenWord()
+    correctGuess;
+    wrongGuess = 0
+    correctLet = []
+    wrongLet = []
+}
+
+function theHiddenWord() {
+    const randomInt = Math.floor(Math.random() * HIDDEN_WORDS.length)
+    return HIDDEN_WORDS[randomInt]
+}
+
+function 
