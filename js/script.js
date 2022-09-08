@@ -55,6 +55,7 @@ const HIDDEN_WORDS_DEF = [
 	'Similar to human languages, programming languages have their own set of rules on how statements can be conveyed. The set of these rules is known as syntax.',
 ];
 
+const
 
 /*----- app's state (variables) -----*/
 /*----- cached element references -----*/
