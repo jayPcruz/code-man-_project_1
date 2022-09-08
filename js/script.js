@@ -1,32 +1,32 @@
 /*----- constants -----*/ '';
-// const LETTERS = [
-// 	'A',
-// 	'B',
-// 	'C',
-// 	'D',
-// 	'E',
-// 	'F',
-// 	'G',
-// 	'H',
-// 	'I',
-// 	'J',
-// 	'K',
-// 	'L',
-// 	'M',
-// 	'N',
-// 	'O',
-// 	'P',
-// 	'Q',
-// 	'R',
-// 	'S',
-// 	'T',
-// 	'U',
-// 	'V',
-// 	'W',
-// 	'X',
-// 	'Y',
-// 	'Z',
-// ];
+const LETTERS = [
+	'A',
+	'B',
+	'C',
+	'D',
+	'E',
+	'F',
+	'G',
+	'H',
+	'I',
+	'J',
+	'K',
+	'L',
+	'M',
+	'N',
+	'O',
+	'P',
+	'Q',
+	'R',
+	'S',
+	'T',
+	'U',
+	'V',
+	'W',
+	'X',
+	'Y',
+	'Z',
+];
 
 const WRONG_GUESS_COUNT = 5;
 
@@ -55,7 +55,7 @@ const HIDDEN_WORDS_DEF = [
 	'Similar to human languages, programming languages have their own set of rules on how statements can be conveyed. The set of these rules is known as syntax.',
 ];
 
-//img need to add 
+//img need to add
 const CODE_MAN = ['https://i.imgur.com/DEvJWy4.png'];
 
 /*----- app's state (variables) -----*/
@@ -65,9 +65,14 @@ let correctLet = [];
 
 let wrongLet = [];
 
-let correctGuess;
+let currentGuess;
 
 let wrongGuess;
+
+let hiddenWordLength;
+
+let goodLetter;
+
 
 /*----- cached element references -----*/
 
@@ -75,31 +80,61 @@ const resetButton = document.querySelector('#reset');
 
 const codeManImg = document.querySelector('.codeman-img');
 
-const inputBox = document.querySelector('.input-box').value;
+const inputBox = document.querySelector('.the-button'),
+	value = inputBox.form.input - inputBox.value;
 
 /*----- event listeners -----*/
 
-resetButton.addEventListener('click', resetButton)
+resetButton.addEventListener('click', resetButton);
 
 /*----- functions -----*/
 
-
 function guessInput() {
-    inputBox.addEventListener('click', handleClick)
+	inputBox.addEventListener('click', handleClick);
+}
+
+function showValueInputBox() {
+    LETTERS[0].forEach(function (letter) {
+        const blankspace = document.createElement('div')
+        blankspace.innterText = letter.toUpperCase()
+        blankspace.classList.add('cell')
+        //missing something?
+    })
 }
 
 function init() {
-    codeManImg.src = CODE_MAN[0]
-    hiddenWord = theHiddenWord()
-    correctGuess;
-    wrongGuess = 0
-    correctLet = []
-    wrongLet = []
+	codeManImg.src = CODE_MAN[0];
+	hiddenWord = theHiddenWord();
+	correctGuess;
+	wrongGuess = 0;
+	correctLet = [];
+	wrongLet = [];
+}
+
+function handleClick(event) {
+	updateCurrentGuess(event.target);
 }
 
 function theHiddenWord() {
-    const randomInt = Math.floor(Math.random() * HIDDEN_WORDS.length)
-    return HIDDEN_WORDS[randomInt]
+	const randomInt = Math.floor(Math.random() * HIDDEN_WORDS.length);
+	return HIDDEN_WORDS[randomInt];
 }
 
-function 
+function generateSecretSpots() {
+    inputGuess.innerHTML = ''
+    secretWord.split('').forEach(function () {
+        const cell = document.createElement('div')
+        cell.classList.add('cell')
+        inputGuess.appendChild(cell)
+    })
+}
+
+function inputGuess() {
+    goodLetter = hiddenWord.includes(currentGuess)
+
+}
+
+function winCodeMan() {
+    let hiddenDisplay = true
+    for (let idx = 0; idx < inputGuess.childNodes.length )
+}
