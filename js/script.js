@@ -58,6 +58,10 @@ const HIDDEN_WORDS_DEF = [
 //img need to add
 const CODE_MAN = ['https://i.imgur.com/DEvJWy4.png'];
 
+const WIN_IMG = [];
+
+const LOSE_IMG = [];
+
 /*----- app's state (variables) -----*/
 let hiddenWord;
 
@@ -67,12 +71,11 @@ let wrongLet = [];
 
 let currentGuess;
 
-let wrongGuess;
+let currWrongGuess;
 
 let hiddenWordLength;
 
 let goodLetter;
-
 
 /*----- cached element references -----*/
 
@@ -80,12 +83,16 @@ const resetButton = document.querySelector('#reset');
 
 const codeManImg = document.querySelector('.codeman-img');
 
+const winLoseImg = document.querySelector('winlose-img');
+
+const inputGuess = document.querySelector('display-hidden');
+
 const inputBox = document.querySelector('.the-button'),
 	value = inputBox.form.input - inputBox.value;
 
 /*----- event listeners -----*/
 
-resetButton.addEventListener('click', resetButton);
+resetButton.addEventListener('click', resetCodeMan);
 
 /*----- functions -----*/
 
@@ -94,21 +101,12 @@ function guessInput() {
 }
 
 function showValueInputBox() {
-    LETTERS[0].forEach(function (letter) {
-        const blankspace = document.createElement('div')
-        blankspace.innterText = letter.toUpperCase()
-        blankspace.classList.add('cell')
-        //missing something?
-    })
-}
-
-function init() {
-	codeManImg.src = CODE_MAN[0];
-	hiddenWord = theHiddenWord();
-	correctGuess;
-	wrongGuess = 0;
-	correctLet = [];
-	wrongLet = [];
+	LETTERS[0].forEach(function (letter) {
+		const blankspace = document.createElement('div');
+		blankspace.innterText = letter.toUpperCase();
+		blankspace.classList.add('cell');
+		//missing something?
+	});
 }
 
 function handleClick(event) {
@@ -121,20 +119,93 @@ function theHiddenWord() {
 }
 
 function generateSecretSpots() {
-    inputGuess.innerHTML = ''
-    secretWord.split('').forEach(function () {
-        const cell = document.createElement('div')
-        cell.classList.add('cell')
-        inputGuess.appendChild(cell)
-    })
+	inputGuess.innerHTML = '';
+	hiddenWord.split('').forEach(function () {
+		const cell = document.createElement('div');
+		cell.classList.add('cell');
+		inputGuess.appendChild(cell);
+	});
 }
 
-function inputGuess() {
-    goodLetter = hiddenWord.includes(currentGuess)
+function guessCheck() {
+	goodLetter = hiddenWord.includes(currentGuess);
+}
 
+function updateCurrentGuess(cell) {
+	currentGuess = inputBox;
+	if (
+		correctLet.some((letter) => letter === currentGuess) ||
+		wrongLet.some((letter) => letter === currentGuess)
+	) {
+		return;
+	}
+	guessCheck();
+	dealResults(cell);
+	updateCodeManImg();
+	winCodeMan();
+}
+
+function updateCodeManImg() {
+	codeManImg.src = DECAYED_FLOWERS[currWrongGuess];
+	loseCodeMan();
+}
+
+function dealResults(cell) {
+	if (goodLetter === true) {
+		cell.style.color = 'green';
+		correctLetters.push(currentGuess);
+		addResults(currentGuess);
+	} else {
+		currWrongGuesses += 1;
+		cell.style.color = 'red';
+		incorrectLetters.push(currentGuess);
+	}
+}
+function addResults(guessedLetter) {
+	hiddenWord.split('').forEach((correctLet, idx) => {
+		if (correctLet === guessedLetter) {
+			inputGuess.childNodes[idx].innerHTML = guessedLetter;
+		}
+	});
 }
 
 function winCodeMan() {
-    let hiddenDisplay = true
-    for (let idx = 0; idx < inputGuess.childNodes.length )
+	let hiddenDisplay = true;
+	for (let idx = 0; idx < inputGuess.childNodes.length; idx++) {
+		if (inputGuess.childNodes[idx].innerText === '') {
+			hiddenDisplay = false;
+		}
+	}
+	if (hiddenDisplay === true) {
+	}
+}
+
+function loseGame() {
+	if (currWrongGuess === 5) {
+		//incomplete
+	}
+}
+
+function resetCodeMan() {
+	codeManImg.src = CODE_MAN[0];
+	hiddenWord = theHiddenWord();
+	currWrongGuess = 0;
+	currentGuess = '';
+	// renderDisplay();
+	correctLet = [];
+	wrongLet = [];
+	generateSecretSpots();
+	// document.querySelectorAll('.keyboard .cell').forEach(function (cell) {
+	//     cell.style.color = 'white';
+}
+// }
+
+function init() {
+	codeManImg.src = CODE_MAN[0];
+	hiddenWord = theHiddenWord();
+	currentGuess = '';
+	wrongGuess = 0;
+	correctLet = [];
+	wrongLet = [];
+	//incomplete
 }
