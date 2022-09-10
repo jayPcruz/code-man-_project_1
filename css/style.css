@@ -1,0 +1,45 @@
+* {
+	font-family: 'Luckiest Guy', cursive;
+	color: black;
+}
+body {
+	background-image: href= "('images/pexels-olena-bohovyk-1772123.jpg.jpg')";
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+h1 {
+	color: rgb(255, 0, 0);
+	font-size: 150px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 40px;
+	text-align: center;
+}
+
+form {
+	text-align: center;
+	width: auto;
+}
+
+.input-box {
+	height: 75px;
+	width: 150px;
+	font-size: 40px;
+	text-align: center;
+}
+
+#reset {
+	width: 150px;
+	height: 75px;
+	font-size: 40px;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 10%;
+}

@@ -34,6 +34,7 @@ APP' STATE VARIABLES
 > variable that keeps track of correct letter choices
 > variable that keeps true or false on whether current guess is in hidden word
 > variable that keeps track of wrong number of choices
+> variable that keeps track of the number of spaces in the hidden word
 
 CACHED ELEMENT REFERENCE
 
